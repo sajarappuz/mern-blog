@@ -12,6 +12,8 @@ dotenv.config()
 
 mongoose.connect(process.env.MONGO)
 
+
+
 app.listen(4001, ()=>{
     console.log("server is rumming")
 })
