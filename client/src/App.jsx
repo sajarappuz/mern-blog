@@ -1,23 +1,41 @@
-import { Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Header from "./components/Header";
 import Login from "./components/Login";
-import Post from "./components/Post";
 import Layout from "./Layout";
 import Register from "./components/Register";
+import IndexPage from "./pages/IndexPage";
+
 
 
 export default function App() {
-  return (
-    <div className="p-4 max-w-[1000px] mx-auto">
-      <main>
-       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={< Post/>} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Route>
-      </Routes>
-      </main>
-    </div>
-  )
+ 
+      const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <IndexPage />
+      },
+      {
+        path: "/register",
+        element: <Register />
+      },
+      {
+        path: "/login",
+        element: <Login />
+      }
+    ]
+  }
+]);
+
+return (
+    
+  <RouterProvider router={router} />
+);
+
+      
+    
+  
 }
